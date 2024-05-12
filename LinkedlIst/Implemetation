@@ -1,0 +1,62 @@
+import java.util.*;
+
+public class Main
+{
+    public static Node head;
+    static class Node{
+        int data;
+        Node next;
+        public Node(int data){
+            this.data=data;
+            this.next=null;
+        }
+    }
+    public static Node insert(int data,Node head){
+          if(head==null){
+              Node newNode= new Node(data);
+              head=newNode;
+              return head;
+             }
+          Node temp=head;
+          while(temp.next!=null){
+              temp=temp.next;
+          }
+          Node newNode= new Node(data);
+          temp.next=newNode;
+          return head;
+    }
+    //linked list as a queue:remove
+    public static void remove(){
+        head=head.next;
+    }
+    
+    public static void printll(Node head){
+        Node temp=head;
+          while(temp!=null){
+              if(temp.next!=null){
+                  System.out.print(temp.data+"->");
+              }
+              else{
+                  System.out.print(temp.data+"->null");
+              }
+              temp=temp.next;
+          }
+    }
+	public static void main(String[] args) {
+	     Scanner in=new Scanner(System.in);
+	     head=null;
+	    // int n=in.nextInt();
+	     
+	   //  for(int i=0;i<n;i++){
+	   //      int val=in.nextInt();
+    //          head=insert(head,val);
+	   //  }
+	     head=insert(5,head);
+	     head=insert(6,head);
+	     head=insert(8,head);
+	     remove();
+	     head=insert(10,head);
+	     printll(head);
+	     
+	}
+}

@@ -1,0 +1,52 @@
+import java.util.ArrayList;
+import java.util.Scanner;
+
+public class Main {
+
+    static class Graph {
+        private int vertices;
+        private ArrayList<ArrayList<Integer>> adjacencyList;
+
+        public Graph(int vertices) {
+            this.vertices = vertices;
+            adjacencyList = new ArrayList<>(vertices);
+            for (int i = 0; i < vertices; i++) {
+                adjacencyList.add(new ArrayList<>());
+            }
+        }
+
+        public void addEdge(int u, int v) {
+            adjacencyList.get(u).add(v);
+           adjacencyList.get(v).add(u); // For undirected graph
+        }
+
+        public void printGraph() {
+            for (int i = 0; i < vertices; i++) {
+                System.out.print(i + " -> ");
+                for (Integer vertex : adjacencyList.get(i)) {
+                    System.out.print(vertex + " ");
+                }
+                System.out.println();
+            }
+        }
+    }
+
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        System.out.print("Enter the number of vertices: ");
+        int n = sc.nextInt();
+        Graph graph = new Graph(n);
+
+        System.out.print("Enter the number of edges: ");
+        int edges = sc.nextInt();
+
+        System.out.println("Enter the edges (u v): ");
+        for (int i = 0; i < edges; i++) {
+            int u = sc.nextInt();
+            int v = sc.nextInt();
+            graph.addEdge(u, v);
+        }
+
+        graph.printGraph();
+    }
+}
